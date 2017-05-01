@@ -1,0 +1,21 @@
+{
+  "name": "rpi-ble",
+  "version": "0.0.2",
+  "description": "NodeJS script to configure wifi trough BLE",
+  "main": "src/index.js",
+  "repository": "git@github.com:rnbez/rpi-ble.git",
+  "author": "Rafael Nascimento Bezerra <rafaelbezerra.dev@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "bleno": "^0.4.2",
+    "bluebird": "^3.5.0",
+    "node-cmd": "^3.0.0",
+    "util": "^0.10.3"
+  },
+  "devDependencies": {
+    "eslint": "^3.19.0"
+  }
+}
