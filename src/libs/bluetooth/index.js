@@ -3,21 +3,25 @@ const bleno = require('bleno')
 const BlenoPrimaryService = bleno.PrimaryService
 const primaryServiceUuid = '4095880c-f7c3-42df-9a49-8dbb7a171995'
 
-const EchoCharacteristic = require('./echo')
+const AddressCharacteristic = require('./address')
 const SetupCharacteristic = require('./setup')
 const StateCharacteristic = require('./state')
 
 class BluetoothSetupServer {
   constructor(onReceiveSetup) {
+    this.address = new AddressCharacteristic()
     this.state = new StateCharacteristic()
     this.setup = new SetupCharacteristic()
-    // setup.addChangeListener(state.setState.bind(state))
     this.setup.setReceiveSetupListener(onReceiveSetup)
 
   }
 
   setReceiveSetupListener(onReceiveSetup) {
     this.setup.setReceiveSetupListener(onReceiveSetup)
+  }
+
+  getIpAddress() {
+    this.address.getIpAddress()
   }
 
   startBle() {
@@ -27,7 +31,7 @@ class BluetoothSetupServer {
       console.log('on -> stateChange: ' + state)
 
       if (state === 'poweredOn') {
-        bleno.startAdvertising('wifi-config', [primaryServiceUuid])
+        bleno.startAdvertising('Raspberry Pi 3', [primaryServiceUuid])
       } else {
         bleno.stopAdvertising()
       }
@@ -42,7 +46,7 @@ class BluetoothSetupServer {
         bleno.setServices([
           new BlenoPrimaryService({
             uuid: primaryServiceUuid,
-            characteristics: [new EchoCharacteristic(), this.state, this.setup]
+            characteristics: [this.address, this.state, this.setup]
           })
         ])
       }

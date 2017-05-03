@@ -30,27 +30,17 @@ SetupCharacteristic.prototype.onWriteRequest = function(
   const setup = JSON.parse(data.toString())
   console.log(setup)
   if (setup) {
-    // if (setup.foo && this._onChange) {
-    //   this._onChange(setup.foo === 1)
-    // }
     console.log(this._onReceiveSetup)
     if (this._onReceiveSetup) {
       this._onReceiveSetup(setup)
     }
   }
 
-  // if (this._updateValueCallback) {
-  //   console.log('EchoCharacteristic - onWriteRequest: notifying')
-
-  //   this._updateValueCallback(this._value)
-  // }
-
   callback(this.RESULT_SUCCESS)
 }
 
 SetupCharacteristic.prototype.addChangeListener = function(callback) {
   this._onChange = callback
-  // console.log(this._onChange)
 }
 
 

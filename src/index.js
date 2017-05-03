@@ -6,6 +6,7 @@ bluServer.setReceiveSetupListener(setup => {
   wificonn
     .connect(setup.ssid, setup.psk)
     .then(() => {
+      bluServer.getIpAddress()
       bluServer.connectionSucceed()
     })
     .catch(err => {

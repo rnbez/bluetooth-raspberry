@@ -54,27 +54,10 @@ function isConnected(retry = false) {
 }
 
 module.exports.connect = function(ssid, psk) {
-  // getAsync('node -v')
-  //   .then(data => {
-  //     console.log('cmd data', data)
-  //   })
-  //   .catch(err => {
-  //     console.log('cmd err', err)
-  //   })
-
   const wpaConfPath = '/etc/wpa_supplicant/wpa_supplicant.conf'
   console.log('sudo ip link set wlan0 up')
   return (
     getAsync('sudo ip link set wlan0 up')
-      // .then(data => {
-      //   console.log(data)
-      //   console.log('ip link show wlan0')
-      //   return getAsync('ip link show wlan0')
-      // })
-      // .then(data => {
-      //   console.log(data)
-      //   return isConnected()
-      // })
       .then(data => {
         console.log(data)
         console.log(`chmod 766 ${wpaConfPath}`)
