@@ -67,8 +67,8 @@ module.exports.connect = function(ssid, psk) {
           'update_config=1\n' +
           'country=GB\n\n'
         fs.writeFileSync(wpaConfPath, wpaConf)
-        console.log(`sudo wpa_passphrase ${ssid} ${psk} >> ${wpaConfPath}`)
-        return getAsync(`sudo wpa_passphrase ${ssid} ${psk} >> ${wpaConfPath}`)
+        console.log(`sudo wpa_passphrase "${ssid}" ${psk} >> ${wpaConfPath}`)
+        return getAsync(`sudo wpa_passphrase "${ssid}" ${psk} >> ${wpaConfPath}`)
       })
       .then(data => {
         console.log(data)
